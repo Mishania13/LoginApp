@@ -8,13 +8,76 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController {
+    
+    var accessData = [
+        "Jhon":"Rembo",
+        "Konan":"Barbarian",
+        "Max":"Mad",
+        "admin":"admin",
+        "user":"password"
+    ]
+    
+    @IBOutlet var loginField: UITextField!
+    @IBOutlet var passwordField: UITextField!
+    @IBOutlet var accessButton: UIButton!
+    @IBOutlet var signButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        accessButton.layer.cornerRadius = 10
+        signButton.layer.cornerRadius = 10
+        
+        
+        loginField.placeholder = "Enter login"
+        loginField.text = ""
+        
+        passwordField.placeholder = "Enter password"
+        passwordField.isSecureTextEntry = true
     }
-
-
+    
+    @IBAction func gettingAccess (_ sender: UIButton?) {
+        
+        for (key, value) in accessData {
+            if key == loginField.text && value == passwordField.text {
+                performSegue(withIdentifier: "loginSegue", sender: nil)
+                break
+            } else if key == loginField.text {
+                loginAlert(type: "password")
+                break
+            } 
+                loginAlert(type: "login and password")
+        }
+    }
+    @IBAction func signUp (_ sender: UIButton?) {
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? SecondViewController
+            else { return }
+        destinationVC.login = loginField.text!
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func loginAlert(type: String) {
+        let alertController = UIAlertController(title: "Input data error",
+                                                message: "You enter wrong \(type)",
+                                                preferredStyle: .alert)
+        
+        let alertAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(alertAction)
+        
+    present(alertController, animated: true)
+    }
+    
+    
 }
+
 
