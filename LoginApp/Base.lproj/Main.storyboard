@@ -65,8 +65,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="gettingAccess:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DEo-EY-niK"/>
-                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z4j-dz-MFY"/>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QaY-fd-LM7"/>
+                                    <segue destination="VQe-rF-hgj" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="IVQ-ui-LZb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -98,6 +98,7 @@
                         <outlet property="passwordField" destination="bCW-lh-IXv" id="p1M-KA-N0m"/>
                         <outlet property="signButton" destination="vcc-54-4Qn" id="VXh-yH-88r"/>
                         <segue destination="7qT-Zy-bcF" kind="show" identifier="loginSegue" id="Glu-G1-c5D"/>
+                        <segue destination="puc-8A-2My" kind="show" identifier="Admin" id="O9K-Os-Sv4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -127,6 +128,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="2"/>
                                 <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button" image="xmark.circle.fill" catalog="system"/>
+                                <connections>
+                                    <segue destination="C0d-WE-TJl" kind="unwind" identifier="closeSecondVCSegue" unwindAction="unwindSecondVCWithSegue:" id="VwJ-N1-2pT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -148,8 +152,129 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uTw-EI-Gre" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="C0d-WE-TJl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="904.34782608695662" y="128.57142857142856"/>
+        </scene>
+        <!--Sign UpVC-->
+        <scene sceneID="Rot-p1-Wra">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="VQe-rF-hgj" customClass="SignUpVC" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <visualEffectView key="view" opaque="NO" contentMode="scaleToFill" id="9Gc-LV-WIC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="QMy-To-9bs">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWU-qn-Bh3">
+                                    <rect key="frame" x="57" y="224" width="300" height="200"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ixV-AC-nk7">
+                                            <rect key="frame" x="0.0" y="160" width="300" height="40"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1f-jK-saB">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="OK"/>
+                                                    <connections>
+                                                        <action selector="tapOk:" destination="VQe-rF-hgj" eventType="touchUpInside" id="P5Y-mR-qKS"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Vd-Rl-JEg">
+                                                    <rect key="frame" x="150" y="0.0" width="150" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <state key="normal" title="Сancel"/>
+                                                    <connections>
+                                                        <action selector="tapCancel:" destination="VQe-rF-hgj" eventType="touchUpInside" id="YNv-D9-PyW"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="9oO-lH-dEW"/>
+                                            </constraints>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="peF-vt-G14">
+                                            <rect key="frame" x="15" y="16" width="270" height="120"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zNq-et-EAL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="270" height="45"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V3z-kW-f9W">
+                                                    <rect key="frame" x="0.0" y="75" width="270" height="45"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="120" id="0mh-Cb-dEK"/>
+                                                <constraint firstAttribute="width" constant="270" id="Ajc-kQ-2uG"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="ixV-AC-nk7" secondAttribute="bottom" id="4Hn-6b-lq1"/>
+                                        <constraint firstAttribute="width" constant="300" id="64H-Ko-94O"/>
+                                        <constraint firstItem="ixV-AC-nk7" firstAttribute="leading" secondItem="GWU-qn-Bh3" secondAttribute="leading" id="7xt-FR-e0R"/>
+                                        <constraint firstItem="peF-vt-G14" firstAttribute="top" secondItem="GWU-qn-Bh3" secondAttribute="top" constant="16" id="JFJ-75-ipE"/>
+                                        <constraint firstAttribute="trailing" secondItem="ixV-AC-nk7" secondAttribute="trailing" id="OpX-dX-Odj"/>
+                                        <constraint firstItem="peF-vt-G14" firstAttribute="centerX" secondItem="GWU-qn-Bh3" secondAttribute="centerX" id="XQu-fm-oiq"/>
+                                        <constraint firstAttribute="height" constant="200" id="egS-5f-mrf"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="GWU-qn-Bh3" firstAttribute="centerX" secondItem="QMy-To-9bs" secondAttribute="centerX" id="ZAe-sN-ZfE"/>
+                                <constraint firstItem="GWU-qn-Bh3" firstAttribute="top" secondItem="QMy-To-9bs" secondAttribute="top" constant="224" id="a2Z-7s-6KY"/>
+                            </constraints>
+                        </view>
+                        <blurEffect style="regular"/>
+                    </visualEffectView>
+                    <connections>
+                        <outlet property="cancleButton" destination="3Vd-Rl-JEg" id="Gl0-js-RSs"/>
+                        <outlet property="okButton" destination="d1f-jK-saB" id="0QC-fN-La8"/>
+                        <outlet property="popUpWindow" destination="GWU-qn-Bh3" id="ao8-cV-MQV"/>
+                        <outlet property="text1" destination="zNq-et-EAL" id="ick-d6-4dt"/>
+                        <outlet property="text2" destination="V3z-kW-f9W" id="T8b-nD-hWc"/>
+                        <segue destination="Vrj-q6-qGG" kind="unwind" identifier="signUpClose" unwindAction="unwindSignUpWithSegue:" id="yTd-pq-t18"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q7c-4M-fGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Vrj-q6-qGG" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="851"/>
+        </scene>
+        <!--Admin Table-->
+        <scene sceneID="lo0-D5-bmb">
+            <objects>
+                <tableViewController modalPresentationStyle="pageSheet" id="puc-8A-2My" customClass="AdminTable" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="D48-Dl-8Nw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdminCell" id="W1x-40-Y2t">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W1x-40-Y2t" id="Lwq-xH-b3G">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="puc-8A-2My" id="SjV-Sk-UoD"/>
+                            <outlet property="delegate" destination="puc-8A-2My" id="tDs-bM-aBQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="uRq-n7-wiF"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nAU-TH-AQc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="850"/>
         </scene>
     </scenes>
     <resources>
